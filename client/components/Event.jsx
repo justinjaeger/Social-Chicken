@@ -6,12 +6,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 
 export default function Event(props) {
+  function handleClose() {
+    console.log(props.eventid);
+  }
+
   return (
     <>
       <b className="hr anim"></b>
       <div className="event">
         <Container>
-          <button className="delete">Delete Post</button>
+          <button
+            className="mb-3"
+            onClick={() => props.deleteEvent(props.eventid)}
+          >
+            Delete Post
+          </button>
+
           <Jumbotron fluid>
             <Container className="eventJumbotron">
               <h1>{props.eventtitle}</h1>
