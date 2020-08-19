@@ -31,7 +31,7 @@ RETURNING username
 ;
 `;
 
-// QUERY FOR WHEN USER CREATES EVENT 
+// QUERY FOR WHEN USER CREATES EVENT
 queries.createEvent = `
 INSERT INTO events
   (eventtitle, eventdate, eventstarttime, eventendtime, eventlocation, eventdetails, eventownerid, eventownerusername, eventmessages)
@@ -59,11 +59,18 @@ RETURNING eventid
 // GRAB EVENT'S ATTENDEES
 queries.selectEventAttendees = `SELECT * FROM usersandevents WHERE eventtitle=$1`;
 
+//DELETE THE User & EVENTS tables
+queries.deleteUserandEvents = `DELETE FROM usersandevents WHERE eventid =$1`;
+
+//DELETE events
+
+queries.deleteEvents = `DELETE FROM events WHERE eventid = $1`;
+
 // CLEAR ALL TABLES & DATA
-queries.clearAll = `
-DROP TABLE usersandevents;
-DROP TABLE events;
-DROP TABLE users;
-`;
+// queries.clearAll = `
+// DROP TABLE usersandevents;
+// DROP TABLE events;
+// DROP TABLE users;
+// `;
 
 module.exports = queries;
