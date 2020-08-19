@@ -40,14 +40,14 @@ export default function Content({ content }) {
     document.getElementsByName("comment-form")[0].reset();
   }
 
-  function handleDelete(e) {
-    e.preventDefault();
+  // function handleDelete(e) {
+  //   e.preventDefault();
 
-    `DELETE FROM userandevents WHERE userid =$1`;
-    setCont(newContent);
-    //clear form data
-    document.getElementsByName("comment-form")[0].reset();
-  }
+  //   `DELETE FROM userandevents WHERE userid =$1`;
+  //   setCont(newContent);
+  //   //clear form data
+  //   document.getElementsByName("comment-form")[0].reset();
+  // }
 
   return (
     <div className="eventContent">
@@ -68,6 +68,7 @@ export default function Content({ content }) {
           Submit
         </Button>
       </Form>
+      <UpdateEvent {cont}/>
     </div>
   );
 }

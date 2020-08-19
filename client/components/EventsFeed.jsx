@@ -8,9 +8,9 @@ export default function EventsFeed(props) {
     events = props.events.map((event, index) => {
       return (
         <Event
+          updateEvent={props.updateEvent}
           deleteEvent={props.deleteEvent}
           {...event}
-          userUpdate={props.userUpdate}
           key={`EventsFeed${index}`}
         />
       );

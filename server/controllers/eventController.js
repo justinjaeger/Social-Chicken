@@ -303,6 +303,7 @@ eventController.filterForUser = (req, res, next) => {
 
 eventController.deletUserandEvent = (req, res, next) => {
   let values = Number(req.params.id);
+
   values = [values];
   const deleteUserandEvent = queries.deleteUserandEvents;
   db.query(deleteUserandEvent, values)
@@ -342,6 +343,12 @@ eventController.deleteEvent = (req, res, next) => {
         },
       });
     });
+};
+
+eventController.updateEvent = (req, res, next) => {
+  let values = Number(req.params.id);
+  values = [values];
+  // Let {}
 };
 
 module.exports = eventController;

@@ -88,6 +88,19 @@ export default function MainContainer() {
     }
   };
 
+  const updateEvent = (event) => {
+    let {
+      eventtitle,
+      eventlocation,
+      eventdate,
+      eventstarttime,
+      eventdetails,
+    } = event;
+    console.log(eventitle);
+
+    //correspond with the userid here and then use the fetch request to update the user events
+  };
+
   return (
     <div className="myContainer">
       <Notnav />
@@ -105,6 +118,7 @@ export default function MainContainer() {
           events={events}
           userUpdate={handleUserPageChange}
         />
+        <UpdatedEvent updated={updateEvent} />
       </div>
     </div>
   );
