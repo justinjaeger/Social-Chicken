@@ -5,8 +5,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   entry: "./client/index.js",
   output: {
+<<<<<<< HEAD
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+=======
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+>>>>>>> 751f347832b1e90a97ae855ad8d85f8275692630
   },
   devtool: "eval-source-map",
   mode: process.env.NODE_ENV,
@@ -66,7 +71,12 @@ module.exports = {
     new MiniCssExtractPlugin(),
   ],
   node: {
+<<<<<<< HEAD
     fs: "empty",
     http2: "empty",
+=======
+    fs: 'empty',
+    http2: 'empty',
+>>>>>>> 751f347832b1e90a97ae855ad8d85f8275692630
   },
 };
