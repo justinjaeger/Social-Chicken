@@ -11,7 +11,7 @@ export default function MainContainer() {
   const [userName, setUserName] = useState("");
   const [user, setUser] = useState({});
   const [events, setEvents] = useState([]);
-  // const [image, setImage] = useState('');
+  // const [forceReset, setForceReset] = useState(0);
   // const [events, setDeleteEvents] = useState(false)
   //pull user data after OAuth login - all variables are named from SQL DB columns
   useEffect(() => {

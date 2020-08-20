@@ -105,4 +105,6 @@ router.delete(
   }
 );
 
+// router.put("/events/:id", )
+
 module.exports = router;
