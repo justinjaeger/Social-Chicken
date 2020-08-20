@@ -11,6 +11,7 @@ export default function MainContainer() {
   const [userName, setUserName] = useState("");
   const [user, setUser] = useState({});
   const [events, setEvents] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
   // const [forceReset, setForceReset] = useState(0);
   // const [events, setDeleteEvents] = useState(false)
   //pull user data after OAuth login - all variables are named from SQL DB columns
@@ -28,6 +29,7 @@ export default function MainContainer() {
       setUser(userInfo);
       setEvents(eventsInfo);
       setUserName(res.data.users.username);
+      setLoggedIn(true);
     });
   }, []);
   //updates username when a different user is selected
@@ -109,7 +111,7 @@ export default function MainContainer() {
 
   return (
     <div className="myContainer">
-      <Notnav />
+      <NavBar loggedIn={loggedIn} profilephoto={user.profilephoto} />
       <div className="container">
         <Container className="header">
           <Profile {...user} />

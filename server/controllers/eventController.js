@@ -1,6 +1,6 @@
 const db = require("../models/models");
 const queries = require("../utils/queries");
-const { deleteUserandEvents } = require("../utils/queries");
+const { deleteUserandEvents, updateEvents } = require("../utils/queries");
 const eventController = {};
 
 eventController.getFullEvents = (req, res, next) => {
@@ -349,7 +349,23 @@ eventController.updateEvent = (req, res, next) => {
   let values = Number(req.params.id);
   values = [values];
   let { eventtitle, eventlocation, eventdetails } = req.body;
-  // Let {}
+  let updateQuery = queries.updateEvents;
+  console.log("param id", values);
+  db.query(updateQuery, eventtitle, eventlocation, eventdetails, values)
+    .then((data) => {
+      console.log("table is being upadated and data", data);
+      return next();
+    })
+    .catch((err) => {
+      console.log(err);
+      return next({
+        log: `Error occurred with queries.updateEvents OR eventController.updateEvent middleware`,
+        message: {
+          err:
+            "An error occcured with SQL when retreving all events information",
+        },
+      });
+    });
 };
 
 module.exports = eventController;

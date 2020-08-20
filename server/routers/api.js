@@ -57,7 +57,7 @@ router.use(
   "/logout", // SWITCH THIS TO POST REQUEST!!
   cookieController.removeCookie,
   (req, res) => {
-    return res.redirect("http://localhost:8080/");
+    return res.redirect("/");
   }
 );
 
@@ -105,6 +105,8 @@ router.delete(
   }
 );
 
-// router.put("/events/:id", )
+router.put("/events/:id", eventController.updateEvent, (req, res) => {
+  return res.status(200).json("User has been updated");
+});
 
 module.exports = router;

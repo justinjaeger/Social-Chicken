@@ -72,7 +72,7 @@ queries.deleteEvents = `DELETE FROM events WHERE eventid = $1`;
 // DROP TABLE events;
 // DROP TABLE users;
 // `;
-queries.updateEvents = `UPDATE SET (eventtitle, , eventdate, eventstarttime,eventendtime, eventlocation, eventdetails, eventmessages) WHERE eventid =$1`;
-queries.uddateUserAndEvents = `UPDATE SET (eventtitle = $1, eventdetails = $2,eventlocation = $3) WHERE eventid = $4`;
+// queries.updateEvents = `UPDATE SET (eventtitle, , eventdate, eventstarttime,eventendtime, eventlocation, eventdetails, eventmessages) WHERE eventid =$1`;
+queries.updateEvents = `UPDATE SET (eventtitle = $1, eventdetails = $2,eventlocation = $3) WHERE eventid = $4`;
 
 module.exports = queries;
