@@ -10,7 +10,7 @@ export default function ProfilePage({ attendee }) {
           <br />
           Username: {attendee.username}
           <br />
-          Status: {attendee.userstatus}
+          {attendee.userstatus && <p>Status: {attendee.userstatus}</p>}
         </p>
       </div>
     </div>

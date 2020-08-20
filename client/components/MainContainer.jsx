@@ -113,22 +113,31 @@ export default function MainContainer() {
   return (
     <div className="myContainer">
       <Notnav loggedIn={loggedIn} />
-      <div className="container">
-        <Container className="header">
-          <Profile {...user} />
-          <AddSearchEvent
-            addEvent={handleCreateEvent}
-            searchEvent={handleSearchEvent}
+      {!loggedIn && (
+        <div className="container">
+          <Container className="header">
+            Please Log In To Continue To Site
+          </Container>
+        </div>
+      )}
+      {loggedIn && (
+        <div className="container">
+          <Container className="header">
+            <Profile {...user} />
+            <AddSearchEvent
+              addEvent={handleCreateEvent}
+              searchEvent={handleSearchEvent}
+              events={events}
+            />
+          </Container>
+          <EventsFeed
+            deleteEvent={deleteEvent}
             events={events}
+            userUpdate={handleUserPageChange}
           />
-        </Container>
-        <EventsFeed
-          deleteEvent={deleteEvent}
-          events={events}
-          userUpdate={handleUserPageChange}
-        />
-        {/* <UpdatedEvent updated={updateEvent} /> */}
-      </div>
+          {/* <UpdatedEvent updated={updateEvent} /> */}
+        </div>
+      )}
     </div>
   );
 }
