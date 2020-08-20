@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import DateTimePicker from 'react-datetime-picker';
+// import DateTimePicker from 'react-datetime-picker';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faSearchPlus } from '@fortawesome/free-solid-svg-icons'
@@ -72,10 +72,10 @@ export default function CreateEvent({ addEvent }) {
 
             <Form.Group controlId="formEventDescription">
               <Form.Label>Start Date & Time</Form.Label>
-              <DateTimePicker
+              {/*<DateTimePicker
                 onChange={onChange}
                 value={dateTime}
-              />
+              /> */}
             </Form.Group>
 
             <Button variant="primary" type="submit" onClick={(e) => { handleSubmit(e) }}>
