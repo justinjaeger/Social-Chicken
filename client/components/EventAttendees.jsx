@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Image, Col, Row } from 'react-bootstrap';
-//import { Switch, Link, Route } from 'react-router-dom';
+import React, { useState } from 'react';
 import ProfilePage from './ProfilePage.jsx';
 
-export default function EventAttendees({ attendees, userUpdate }) {
+export default function EventAttendees({ attendees }) {
   //creates attendee component for each attendee in list
-  const [moreInfo, setMoreInfo] = useState('')
+  const [moreInfo, setMoreInfo] = useState('');
   const [isClicked, setClicked] = useState(false);
   let attendeesList = [];
 
@@ -14,10 +12,12 @@ export default function EventAttendees({ attendees, userUpdate }) {
       return (
         <div className="attendeeInfo" key={`EventAttendees${index}`}>
           <div className="circular">
-            <button onClick={() => {
-              setClicked(!isClicked)
-              setMoreInfo(attendee)
-              }}>
+            <button
+              onClick={() => {
+                setClicked(!isClicked);
+                setMoreInfo(attendee);
+              }}
+            >
               <img src={`${attendee.profilephoto}`} />
             </button>
           </div>

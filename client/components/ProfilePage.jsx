@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 export default function ProfilePage({ attendee }) {
   return (
