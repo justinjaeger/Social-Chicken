@@ -40,7 +40,7 @@ export default function Event(props) {
             </Container>
           </Jumbotron>
           <div className="myCol">
-            {
+            {props.imageurl && (
               <img
                 src={props.imageurl}
                 style={{
@@ -48,7 +48,7 @@ export default function Event(props) {
                   height: '100%',
                 }}
               />
-            }
+            )}
           </div>
           <Container>
             <EventAttendees {...props} userUpdate={props.userUpdate} />
