@@ -1,14 +1,16 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+//const bodyParser = require('body-parser');
 
 const app = express();
 const apiRouter = require('./routers/api');
 
 // BODY PARSERS & COOKIE PARSER
-app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb' }));
 app.use(cookieParser());
+//app.use(bodyParser.raw());
 
 // SERVE UP STATIC FILES
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
