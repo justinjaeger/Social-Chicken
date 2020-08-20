@@ -14,6 +14,7 @@ export default function MainContainer() {
   // const [events, setDeleteEvents] = useState(false)
   //pull user data after OAuth login - all variables are named from SQL DB columns
   useEffect(() => {
+    console.log('useEffect')
     axios.get(`/api/info?userName=${userName}`).then((res) => {
       let userInfo = {
         username: res.data.users.username,
@@ -60,6 +61,7 @@ export default function MainContainer() {
   }
   //handles the state change and posts to database on search event add
   function handleSearchEvent(event) {
+    console.log('handleSearchEvent:', event)
     // ADD
     axios.post(`/api/add?eventtitle=${event.eventtitle}`).then((res) => {
       event.attendees.push({
