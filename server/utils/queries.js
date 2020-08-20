@@ -1,4 +1,4 @@
-const db = require('../models/models.js'); // remove after testing
+const db = require("../models/models.js"); // remove after testing
 
 const queries = {};
 
@@ -73,6 +73,6 @@ queries.deleteEvents = `DELETE FROM events WHERE eventid = $1`;
 // DROP TABLE users;
 // `;
 queries.updateEvents = `UPDATE SET (eventtitle, , eventdate, eventstarttime,eventendtime, eventlocation, eventdetails, eventmessages) WHERE eventid =$1`;
-queries.uddateUserAndEvents = `UPDATE SET (eventtitle, eventdate, eventstattime, eventendtime, eventdetails,eventlocation) WHERE eventid = $1`;
+queries.uddateUserAndEvents = `UPDATE SET (eventtitle = $1, eventdetails = $2,eventlocation = $3) WHERE eventid = $4`;
 
 module.exports = queries;

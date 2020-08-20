@@ -68,7 +68,7 @@ export default function Content({ content }) {
           Submit
         </Button>
       </Form>
-      <UpdateEvent {cont}/>
+      {/* <UpdateEvent {cont}/> */}
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Event from './Event.jsx';
+import React, { useState, useEffect } from "react";
+import Event from "./Event.jsx";
 
 export default function EventsFeed(props) {
   let events = [];
@@ -8,7 +8,7 @@ export default function EventsFeed(props) {
     events = props.events.map((event, index) => {
       return (
         <Event
-          updateEvent={props.updateEvent}
+          // updateEvent={props.updateEvent}
           deleteEvent={props.deleteEvent}
           {...event}
           key={`EventsFeed${index}`}

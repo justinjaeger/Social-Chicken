@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import Profile from './Profile.jsx';
-import EventsFeed from './EventsFeed.jsx';
-import Notnav from './Navbar.jsx';
-import axios from 'axios';
-import { Card, Button, Col, Row, Container } from 'react-bootstrap';
-import AddSearchEvent from './AddSearchEvent.jsx';
+import React, { useState, useEffect } from "react";
+import Profile from "./Profile.jsx";
+import EventsFeed from "./EventsFeed.jsx";
+import Notnav from "./Navbar.jsx";
+import axios from "axios";
+import { Card, Button, Col, Row, Container } from "react-bootstrap";
+import AddSearchEvent from "./AddSearchEvent.jsx";
 
 // Implemented with hooks throughout
 export default function MainContainer() {
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
   const [user, setUser] = useState({});
   const [events, setEvents] = useState([]);
   // const [image, setImage] = useState('');
   // const [events, setDeleteEvents] = useState(false)
   //pull user data after OAuth login - all variables are named from SQL DB columns
   useEffect(() => {
-    console.log('useEffect is firing');
+    console.log("useEffect is firing");
     axios.get(`/api/info?userName=${userName}`).then((res) => {
       let userInfo = {
         username: res.data.users.username,
@@ -36,7 +36,7 @@ export default function MainContainer() {
   }
   //handles the state change and posts to database on event creation
   function handleCreateEvent(event) {
-    console.log('handCreateEvent is firing:', event);
+    console.log("handCreateEvent is firing:", event);
     let {
       eventtitle,
       eventlocation,
@@ -81,9 +81,9 @@ export default function MainContainer() {
 
   const deleteEvent = async (id) => {
     try {
-      console.log('THIS is the id youre deleting' + id);
+      console.log("THIS is the id youre deleting" + id);
       const deleteEvent = await fetch(`/api/events/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
         //  headers: { "Content-Type": "application/json" },
         // credentials: "include",
       });
@@ -124,7 +124,7 @@ export default function MainContainer() {
           events={events}
           userUpdate={handleUserPageChange}
         />
-        <UpdatedEvent updated={updateEvent} />
+        {/* <UpdatedEvent updated={updateEvent} /> */}
       </div>
     </div>
   );
