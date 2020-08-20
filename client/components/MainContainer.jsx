@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
-import Profile from "./Profile.jsx";
-import EventsFeed from "./EventsFeed.jsx";
-import Notnav from "./Navbar.jsx";
-import axios from "axios";
-import { Card, Button, Col, Row, Container } from "react-bootstrap";
-import AddSearchEvent from "./AddSearchEvent.jsx";
+import React, { useState, useEffect } from 'react';
+import Profile from './Profile.jsx';
+import EventsFeed from './EventsFeed.jsx';
+import Notnav from './Navbar.jsx';
+import axios from 'axios';
+import { Card, Button, Col, Row, Container } from 'react-bootstrap';
+import AddSearchEvent from './AddSearchEvent.jsx';
 
 // Implemented with hooks throughout
 export default function MainContainer() {
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState('');
   const [user, setUser] = useState({});
   const [events, setEvents] = useState([]);
+  const [image, setImage] = useState(0)
+  // const [image, setImage] = useState('');
   // const [events, setDeleteEvents] = useState(false)
   //pull user data after OAuth login - all variables are named from SQL DB columns
   useEffect(() => {
-    console.log('useEffect')
+    console.log('useEffect is firing');
     axios.get(`/api/info?userName=${userName}`).then((res) => {
       let userInfo = {
         username: res.data.users.username,
@@ -23,23 +25,28 @@ export default function MainContainer() {
         profilephoto: res.data.users.profilephoto,
       };
       let eventsInfo = res.data.events;
+      //let imageInfo = res.data.events.map;
       setUser(userInfo);
       setEvents(eventsInfo);
       setUserName(res.data.users.username);
     });
-  }, []);
+  }, [image]);
   //updates username when a different user is selected
   function handleUserPageChange(username) {
     setUserName(username);
   }
   //handles the state change and posts to database on event creation
   function handleCreateEvent(event) {
+    console.log('handCreateEvent is firing:', event);
+    let randomNum = Math.floor(Math.random()*10000);
+    setImage(randomNum);
     let {
       eventtitle,
       eventlocation,
       eventdate,
       eventstarttime,
       eventdetails,
+      imageUrl,
     } = event;
     axios
       .post(`/api/create?userName=${userName}`, {
@@ -48,6 +55,7 @@ export default function MainContainer() {
         eventdate,
         eventstarttime,
         eventdetails,
+        imageUrl,
       })
       .then((res) => {});
     event.attendees = [
@@ -77,9 +85,9 @@ export default function MainContainer() {
 
   const deleteEvent = async (id) => {
     try {
-      console.log("THIS is the id youre deleting" + id);
+      console.log('THIS is the id youre deleting' + id);
       const deleteEvent = await fetch(`/api/events/${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
         //  headers: { "Content-Type": "application/json" },
         // credentials: "include",
       });
