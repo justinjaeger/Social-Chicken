@@ -3,6 +3,7 @@ import Event from './Event.jsx';
 
 export default function EventsFeed(props) {
   let events = [];
+  console.log('events feed') // not rendering events feed?
   //creates events for each event in feed
   if (props.events && Object.keys(props.events).length > 0) {
     events = props.events.map((event, index) => {
@@ -12,7 +13,7 @@ export default function EventsFeed(props) {
           {...event}
           userUpdate={props.userUpdate}
           key={`EventsFeed${index}`}
-          imageurl={props.events[0].imageurl}
+          imageurl={props.events[index].imageurl}
         />
       );
     });

@@ -6,7 +6,7 @@ loginController.oAuth = async (req, res, next) => {
   const oauth2Client = new google.auth.OAuth2(
     '731158711424-ap2rf65v003b7e4s7ragi20j35kemjgc.apps.googleusercontent.com',
     'qCD9zM8C65MjZgg8RxGvyKxe',
-    'http://localhost:3000/api/login/google',
+    'http://localhost:3001/api/login/google',
   );
 
   const scopes = [
@@ -30,7 +30,7 @@ loginController.afterConsent = (req, res, next) => {
   const oauth2Client = new google.auth.OAuth2(
     '731158711424-ap2rf65v003b7e4s7ragi20j35kemjgc.apps.googleusercontent.com',
     'qCD9zM8C65MjZgg8RxGvyKxe',
-    'http://localhost:3000/api/login/google',
+    'http://localhost:3001/api/login/google',
   );
 
   oauth2Client

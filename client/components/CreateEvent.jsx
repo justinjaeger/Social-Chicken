@@ -12,7 +12,7 @@ export default function CreateEvent({ addEvent }) {
     eventtitle: '',
     eventlocation: '',
     eventdetails: '',
-    imageUrl: '',
+    imageurl: '',
   });
 
   const [formData, updateFormData] = useState(initialFormData);
@@ -30,6 +30,7 @@ export default function CreateEvent({ addEvent }) {
   };
   //handles submit event - create date and time and append to the event object
   const handleSubmit = async (e) => {
+    console.log('formData:',formData)
     e.preventDefault();
     const eventdate = dateTime.toDateString();
     let time = dateTime.toTimeString();
@@ -120,7 +121,7 @@ export default function CreateEvent({ addEvent }) {
             <Form.Group controlId="formImageUrl">
               <Form.Label>Image URL (optional)</Form.Label>
               <div>
-                <input type="text" name="imageUrl" onChange={handleChange} />
+                <input type="text" name="imageurl" onChange={handleChange} />
                 <img />
               </div>
             </Form.Group>

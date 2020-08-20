@@ -9,7 +9,7 @@ export default function Event(props) {
   function handleClose() {
     console.log(props.eventid);
   }
-
+  console.log('PROPS IN EVENT', props)
   // const imageSrcData = props.image
   //   ? btoa(String.fromCharCode(...new Uint8Array(props.image.data)))
   //   : null;
@@ -43,6 +43,7 @@ export default function Event(props) {
             {
               <img
                 src={props.imageurl}
+                onError = {() => console.log('ERROR')}
                 style={{
                   width: '100%',
                   height: '100%',

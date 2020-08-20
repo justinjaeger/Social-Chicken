@@ -26,7 +26,7 @@ export default function SearchEvent({ searchEvent, events }) {
     axios.get('/api/events').then((res) => {
       exampleEventData = res.data;
     });
-  });
+  }, []);
   //filters list of events as the user types in
   const handleChange = (e) => {
     const regex = new RegExp(e.target.value.trim(), 'gi');

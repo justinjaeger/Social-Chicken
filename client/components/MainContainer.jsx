@@ -11,12 +11,13 @@ export default function MainContainer() {
   const [userName, setUserName] = useState('');
   const [user, setUser] = useState({});
   const [events, setEvents] = useState([]);
-  const [image, setImage] = useState(0)
-  // const [image, setImage] = useState('');
+  console.log('eventSSS:',events)
+  // const [forceReset, setForceReset] = useState(0);
   // const [events, setDeleteEvents] = useState(false)
   //pull user data after OAuth login - all variables are named from SQL DB columns
   useEffect(() => {
-    console.log('useEffect is firing');
+    console.log('new console log')
+    console.log('useEffect is firing:', events);
     axios.get(`/api/info?userName=${userName}`).then((res) => {
       let userInfo = {
         username: res.data.users.username,
@@ -25,12 +26,15 @@ export default function MainContainer() {
         profilephoto: res.data.users.profilephoto,
       };
       let eventsInfo = res.data.events;
-      //let imageInfo = res.data.events.map;
+      let imageInfo = res.data.events.map;
       setUser(userInfo);
       setEvents(eventsInfo);
       setUserName(res.data.users.username);
     });
-  }, [image]);
+  }, []);
+
+  // another function could fetch user name and events / state
+
   //updates username when a different user is selected
   function handleUserPageChange(username) {
     setUserName(username);
@@ -38,15 +42,15 @@ export default function MainContainer() {
   //handles the state change and posts to database on event creation
   function handleCreateEvent(event) {
     console.log('handCreateEvent is firing:', event);
-    let randomNum = Math.floor(Math.random()*10000);
-    setImage(randomNum);
+    let randomNum = Math.floor(Math.random() * 10000);
+    setForceReset(randomNum);
     let {
       eventtitle,
       eventlocation,
       eventdate,
       eventstarttime,
       eventdetails,
-      imageUrl,
+      imageurl,
     } = event;
     axios
       .post(`/api/create?userName=${userName}`, {
@@ -55,7 +59,7 @@ export default function MainContainer() {
         eventdate,
         eventstarttime,
         eventdetails,
-        imageUrl,
+        imageurl,
       })
       .then((res) => {});
     event.attendees = [
