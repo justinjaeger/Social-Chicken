@@ -12,7 +12,7 @@ export default function EventsFeed(props) {
           {...event}
           userUpdate={props.userUpdate}
           key={`EventsFeed${index}`}
-          imageurl={props.events[0].imageurl}
+          imageurl={props.events[index].imageurl}
         />
       );
     });
