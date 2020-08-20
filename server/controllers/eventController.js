@@ -74,7 +74,7 @@ eventController.createEvent = (req, res, next) => {
     eventdate,
     eventstarttime,
     eventdetails,
-    imageUrl,
+    imageurl,
   } = req.body;
   //console.log('eventController.createEvent ', req.body);
   const queryValues = [
@@ -87,7 +87,7 @@ eventController.createEvent = (req, res, next) => {
     userid,
     username,
     '{}',
-    imageUrl,
+    imageurl,
   ];
   db.query(queryString, queryValues)
     .then((data) => {
@@ -223,7 +223,7 @@ eventController.allEvents = (req, res, next) => {
             e.attendees = attendees;
             return e;
           });
-          res.locals.allEventsInfo = mergedTable;
+          res.locals.allEventsInfo = mergedTable.reverse();
           return next();
         });
       }

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import DateTimePicker from 'react-datetime-picker';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faSearchPlus } from '@fortawesome/free-solid-svg-icons';
-import { Modal, Button, Form, Card } from 'react-bootstrap';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Modal, Button, Form } from 'react-bootstrap';
 
 export default function CreateEvent({ addEvent }) {
   /* Form data */
