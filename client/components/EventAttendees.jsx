@@ -5,6 +5,7 @@ import ProfilePage from './ProfilePage.jsx';
 
 export default function EventAttendees({ attendees, userUpdate }) {
   //creates attendee component for each attendee in list
+  const [moreInfo, setMoreInfo] = useState('')
   const [isClicked, setClicked] = useState(false);
   let attendeesList = [];
 
@@ -13,7 +14,10 @@ export default function EventAttendees({ attendees, userUpdate }) {
       return (
         <div className="attendeeInfo" key={`EventAttendees${index}`}>
           <div className="circular">
-            <button onClick={() => setClicked(!isClicked)}>
+            <button onClick={() => {
+              setClicked(!isClicked)
+              setMoreInfo(attendee)
+              }}>
               <img src={`${attendee.profilephoto}`} />
             </button>
           </div>
@@ -28,7 +32,7 @@ export default function EventAttendees({ attendees, userUpdate }) {
       <h5>Attendees:</h5>
       <div className="attendees">{attendeesList}</div>
 
-      {isClicked && <ProfilePage attendees={attendees} />}
+      {isClicked && <ProfilePage attendee={moreInfo} />}
     </div>
   );
 }
