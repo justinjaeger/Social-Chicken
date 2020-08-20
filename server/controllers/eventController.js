@@ -74,7 +74,7 @@ eventController.createEvent = (req, res, next) => {
     eventdate,
     eventstarttime,
     eventdetails,
-    imageUrl,
+    imageurl,
   } = req.body;
   //console.log('eventController.createEvent ', req.body);
   const queryValues = [
@@ -87,7 +87,7 @@ eventController.createEvent = (req, res, next) => {
     userid,
     username,
     '{}',
-    imageUrl,
+    imageurl,
   ];
   db.query(queryString, queryValues)
     .then((data) => {

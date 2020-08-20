@@ -12,7 +12,7 @@ export default function CreateEvent({ addEvent }) {
     eventtitle: '',
     eventlocation: '',
     eventdetails: '',
-    imageUrl: '',
+    imageurl: '',
   });
 
   const [formData, updateFormData] = useState(initialFormData);
@@ -120,7 +120,7 @@ export default function CreateEvent({ addEvent }) {
             <Form.Group controlId="formImageUrl">
               <Form.Label>Image URL (optional)</Form.Label>
               <div>
-                <input type="text" name="imageUrl" onChange={handleChange} />
+                <input type="text" name="imageurl" onChange={handleChange} />
                 <img />
               </div>
             </Form.Group>
