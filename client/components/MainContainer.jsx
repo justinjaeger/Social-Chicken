@@ -46,7 +46,7 @@ export default function MainContainer() {
       eventdate,
       eventstarttime,
       eventdetails,
-      imageUrl,
+      imageurl,
     } = event;
     axios
       .post(`/api/create?userName=${userName}`, {
@@ -55,7 +55,7 @@ export default function MainContainer() {
         eventdate,
         eventstarttime,
         eventdetails,
-        imageUrl,
+        imageurl,
       })
       .then((res) => {});
     event.attendees = [
