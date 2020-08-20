@@ -36,7 +36,7 @@ export default function MainContainer() {
   }
   //handles the state change and posts to database on event creation
   function handleCreateEvent(event) {
-    console.log('handCreateEvent is firing:', event);
+    //console.log('handCreateEvent is firing:', event);
     // let randomNum = Math.floor(Math.random() * 10000);
     // setForceReset(randomNum);
     let {

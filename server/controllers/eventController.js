@@ -223,7 +223,7 @@ eventController.allEvents = (req, res, next) => {
             e.attendees = attendees;
             return e;
           });
-          res.locals.allEventsInfo = mergedTable;
+          res.locals.allEventsInfo = mergedTable.reverse();
           return next();
         });
       }
