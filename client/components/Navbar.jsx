@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faFeatherAlt } from "@fortawesome/free-solid-svg-icons";
 
-export default function Notnav() {
+export default function Navbar({ loggedIn, profilePhoto }) {
   return (
     <Navbar expand="lg" className="myNavbar justify-content-between">
       <Navbar.Brand className="brand" href="#home">

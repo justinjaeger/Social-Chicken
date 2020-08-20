@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import DateTimePicker from 'react-datetime-picker';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faSearchPlus } from '@fortawesome/free-solid-svg-icons';
-import { Modal, Button, Form, Card } from 'react-bootstrap';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Modal, Button, Form } from 'react-bootstrap';
 
 export default function CreateEvent({ addEvent }) {
   /* Form data */
@@ -12,7 +12,7 @@ export default function CreateEvent({ addEvent }) {
     eventtitle: '',
     eventlocation: '',
     eventdetails: '',
-    imageUrl: '',
+    imageurl: '',
   });
 
   const [formData, updateFormData] = useState(initialFormData);
@@ -120,7 +120,7 @@ export default function CreateEvent({ addEvent }) {
             <Form.Group controlId="formImageUrl">
               <Form.Label>Image URL (optional)</Form.Label>
               <div>
-                <input type="text" name="imageUrl" onChange={handleChange} />
+                <input type="text" name="imageurl" onChange={handleChange} />
                 <img />
               </div>
             </Form.Group>
