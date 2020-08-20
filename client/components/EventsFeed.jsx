@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Event from "./Event.jsx";
+import React, { useState, useEffect } from 'react';
+import Event from './Event.jsx';
 
 export default function EventsFeed(props) {
   let events = [];
@@ -12,6 +12,7 @@ export default function EventsFeed(props) {
           {...event}
           userUpdate={props.userUpdate}
           key={`EventsFeed${index}`}
+          imageurl={props.events[index].imageurl}
         />
       );
     });
