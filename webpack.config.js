@@ -1,14 +1,14 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: './client/index.js',
+  entry: "./client/index.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
   },
-  devtool: 'eval-source-map',
+  devtool: "eval-source-map",
   mode: process.env.NODE_ENV,
   module: {
     rules: [
@@ -16,15 +16,15 @@ module.exports = {
         test: /.(css|scss)$/,
         // include: [path.resolve(__dirname, '/node_modules/react-datepicker/'), path.resolve(__dirname, '/node_modules/bootstrap/')],
         // exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: ["@babel/preset-env", "@babel/preset-react"],
           },
         },
       },
@@ -33,7 +33,7 @@ module.exports = {
         use: [
           {
             // loads files as base64 encoded data url if image file is less than set limit
-            loader: 'url-loader',
+            loader: "url-loader",
             options: {
               // if file is greater than the limit (bytes), file-loader is used as fallback
               limit: 8192,
@@ -45,15 +45,15 @@ module.exports = {
   },
   devServer: {
     port: 8080,
-    // contentBase: path.resolve(__dirname, '/dist'),
-    // publicPath: '/dist/',
+    // contentBase: path.resolve(__dirname, "/dist"),
+    // publicPath: "/dist/",
     proxy: {
-      '/api/**': {
-        target: 'http://localhost:3000',
+      "/api/**": {
+        target: "http://localhost:3000",
         secure: false,
       },
-      '/assets/**': {
-        target: 'http://localhost:3000',
+      "/assets/**": {
+        target: "http://localhost:3000",
         secure: false,
       },
     },
@@ -61,12 +61,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './client/index.html',
+      template: "./client/index.html",
     }),
     new MiniCssExtractPlugin(),
   ],
   node: {
-    fs: 'empty',
-    http2: 'empty',
+    fs: "empty",
+    http2: "empty",
   },
 };

@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import Profile from './Profile.jsx';
-import EventsFeed from './EventsFeed.jsx';
-import Notnav from './Navbar.jsx';
-import axios from 'axios';
-import { Container } from 'react-bootstrap';
-import AddSearchEvent from './AddSearchEvent.jsx';
+import React, { useState, useEffect } from "react";
+import Profile from "./Profile.jsx";
+import EventsFeed from "./EventsFeed.jsx";
+import Notnav from "./Navbar.jsx";
+import axios from "axios";
+import { Card, Button, Col, Row, Container } from "react-bootstrap";
+import AddSearchEvent from "./AddSearchEvent.jsx";
 
 // Implemented with hooks throughout
 export default function MainContainer() {
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
   const [user, setUser] = useState({});
   const [events, setEvents] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
   // const [forceReset, setForceReset] = useState(0);
   // const [events, setDeleteEvents] = useState(false)
   //pull user data after OAuth login - all variables are named from SQL DB columns
   useEffect(() => {
-    console.log('useEffect is firing');
+    console.log("useEffect is firing");
     axios.get(`/api/info?userName=${userName}`).then((res) => {
       let userInfo = {
         username: res.data.users.username,
@@ -28,6 +29,7 @@ export default function MainContainer() {
       setUser(userInfo);
       setEvents(eventsInfo);
       setUserName(res.data.users.username);
+      setLoggedIn(true);
     });
   }, []);
   //updates username when a different user is selected
@@ -36,16 +38,14 @@ export default function MainContainer() {
   }
   //handles the state change and posts to database on event creation
   function handleCreateEvent(event) {
-    //console.log('handCreateEvent is firing:', event);
-    // let randomNum = Math.floor(Math.random() * 10000);
-    // setForceReset(randomNum);
+    console.log("handCreateEvent is firing:", event);
     let {
       eventtitle,
       eventlocation,
       eventdate,
       eventstarttime,
       eventdetails,
-      imageurl,
+      imageUrl,
     } = event;
     axios
       .post(`/api/create?userName=${userName}`, {
@@ -54,7 +54,7 @@ export default function MainContainer() {
         eventdate,
         eventstarttime,
         eventdetails,
-        imageurl,
+        imageUrl,
       })
       .then((res) => {});
     event.attendees = [
@@ -83,9 +83,9 @@ export default function MainContainer() {
 
   const deleteEvent = async (id) => {
     try {
-      console.log('THIS is the id youre deleting' + id);
+      console.log("THIS is the id youre deleting" + id);
       const deleteEvent = await fetch(`/api/events/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
         //  headers: { "Content-Type": "application/json" },
         // credentials: "include",
       });
@@ -96,13 +96,25 @@ export default function MainContainer() {
     }
   };
 
+  const updateEvent = (event) => {
+    let {
+      eventtitle,
+      eventlocation,
+      eventdate,
+      eventstarttime,
+      eventdetails,
+    } = event;
+    console.log(eventitle);
+
+    //correspond with the userid here and then use the fetch request to update the user events
+  };
+
   return (
     <div className="myContainer">
-      <Notnav />
+      <Notnav loggedIn={loggedIn} />
       <div className="container">
         <Container className="header">
           <Profile {...user} />
-
           <AddSearchEvent
             addEvent={handleCreateEvent}
             searchEvent={handleSearchEvent}
@@ -114,6 +126,7 @@ export default function MainContainer() {
           events={events}
           userUpdate={handleUserPageChange}
         />
+        {/* <UpdatedEvent updated={updateEvent} /> */}
       </div>
     </div>
   );
