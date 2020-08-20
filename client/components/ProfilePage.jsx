@@ -7,12 +7,11 @@ export default function ProfilePage({ attendee }) {
     <div className="attendeesContainer">
       <h5>More Info:</h5>
       <div className="attendees">
-          <p>
+        <p>
           Name: {attendee.firstname} {attendee.lastname}
-          </p>
-          <p> 
-              Username: {attendee.username}
-              </p>
+          <br />
+          Username: {attendee.username}
+        </p>
       </div>
     </div>
   );
