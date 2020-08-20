@@ -4,6 +4,7 @@ import Content from './Content.jsx';
 import { ListGroup, Container, Row, Jumbotron } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import { Button } from 'react-bootstrap';
 
 export default function Event(props) {
   function handleClose() {
@@ -19,12 +20,12 @@ export default function Event(props) {
       <b className="hr anim"></b>
       <div className="event">
         <Container>
-          <button
-            className="mb-3"
+          <Button
+            variant="secondary"
             onClick={() => props.deleteEvent(props.eventid)}
           >
             Delete Post
-          </button>
+          </Button>
 
           <Jumbotron fluid>
             <Container className="eventJumbotron">
