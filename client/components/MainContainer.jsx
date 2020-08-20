@@ -5,6 +5,8 @@ import Notnav from './Navbar.jsx';
 import axios from 'axios';
 import { Card, Button, Col, Row, Container } from 'react-bootstrap';
 import AddSearchEvent from './AddSearchEvent.jsx';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import ProfilePage from './ProfilePage.jsx';
 
 // Implemented with hooks throughout
 export default function MainContainer() {
@@ -102,6 +104,7 @@ export default function MainContainer() {
       <div className="container">
         <Container className="header">
           <Profile {...user} />
+
           <AddSearchEvent
             addEvent={handleCreateEvent}
             searchEvent={handleSearchEvent}

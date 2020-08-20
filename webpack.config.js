@@ -58,6 +58,7 @@ module.exports = {
       },
     },
     hot: true,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
