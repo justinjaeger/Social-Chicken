@@ -3,7 +3,7 @@ import Profile from "./Profile.jsx";
 import EventsFeed from "./EventsFeed.jsx";
 import Notnav from "./Navbar.jsx";
 import axios from "axios";
-import { Container } from "react-bootstrap";
+import { Card, Button, Col, Row, Container } from "react-bootstrap";
 import AddSearchEvent from "./AddSearchEvent.jsx";
 
 // Implemented with hooks throughout
@@ -38,16 +38,14 @@ export default function MainContainer() {
   }
   //handles the state change and posts to database on event creation
   function handleCreateEvent(event) {
-    //console.log('handCreateEvent is firing:', event);
-    // let randomNum = Math.floor(Math.random() * 10000);
-    // setForceReset(randomNum);
+    console.log("handCreateEvent is firing:", event);
     let {
       eventtitle,
       eventlocation,
       eventdate,
       eventstarttime,
       eventdetails,
-      imageurl,
+      imageUrl,
     } = event;
     axios
       .post(`/api/create?userName=${userName}`, {
@@ -56,7 +54,7 @@ export default function MainContainer() {
         eventdate,
         eventstarttime,
         eventdetails,
-        imageurl,
+        imageUrl,
       })
       .then((res) => {});
     event.attendees = [
@@ -113,11 +111,10 @@ export default function MainContainer() {
 
   return (
     <div className="myContainer">
-      <NavBar loggedIn={loggedIn} profilephoto={user.profilephoto} />
+      <Notnav loggedIn={loggedIn} />
       <div className="container">
         <Container className="header">
           <Profile {...user} />
-
           <AddSearchEvent
             addEvent={handleCreateEvent}
             searchEvent={handleSearchEvent}
