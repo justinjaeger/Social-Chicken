@@ -21,7 +21,8 @@ CREATE TABLE events
   "eventdetails" varchar NOT NULL CHECK ( eventdetails  <> ''),
   "eventownerid" bigint NOT NULL,
   "eventownerusername" varchar NOT NULL,
-  "eventmessages" varchar ARRAY,
+  "eventmessages" varchar
+  ARRAY,
   UNIQUE
   ( eventtitle ),
   FOREIGN KEY
@@ -32,9 +33,9 @@ CREATE TABLE events
   (username)
 );
 
-SELECT setval('events_eventid_seq', 1, false);
+  SELECT setval('events_eventid_seq', 1, false);
 
-CREATE TABLE usersandevents
+  CREATE TABLE usersandevents
   (
     "uselessid" serial PRIMARY KEY,
     "userid" bigint NOT NULL,
@@ -47,8 +48,12 @@ CREATE TABLE usersandevents
     "eventdetails" varchar NOT NULL,
     "eventlocation" varchar NOT NULL,
     UNIQUE (username, eventtitle),
-    FOREIGN KEY ( userid ) REFERENCES users ( userid ),
-    FOREIGN KEY ( eventid ) REFERENCES events ( eventid )
+    UNIQUE ( userid )
+    REFERENCES users
+    ( userid ),
+    FOREIGN KEY
+    ( eventid ) REFERENCES events
+    ( eventid )
   );
 
-SELECT setval('usersandevents_uselessid_seq', 1, false);
+    SELECT setval('usersandevents_uselessid_seq', 1, false);

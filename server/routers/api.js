@@ -57,7 +57,7 @@ router.use(
   '/logout', // SWITCH THIS TO POST REQUEST!!
   cookieController.removeCookie,
   (req, res) => {
-    return res.status(200).json('Successful logout.');
+    return res.redirect('/');
   },
 );
 
@@ -104,5 +104,14 @@ router.delete(
     return res.status(200).json('User has been deleted');
   },
 );
+
+router.put('/events/:id', eventController.updateEvent, (req, res) => {
+  return res.status(200).json('User has been updated');
+});
+
+//add a status to a user
+router.post('/status', fileController.setStatus, (req, res) => {
+  return res.status(200).json('Status has been added to db');
+});
 
 module.exports = router;

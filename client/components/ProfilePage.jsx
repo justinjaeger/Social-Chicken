@@ -9,6 +9,8 @@ export default function ProfilePage({ attendee }) {
           Name: {attendee.firstname} {attendee.lastname}
           <br />
           Username: {attendee.username}
+          <br />
+          {attendee.userstatus && <p>Status: {attendee.userstatus}</p>}
         </p>
       </div>
     </div>

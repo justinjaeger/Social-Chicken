@@ -1,4 +1,4 @@
-const db = require('../models/models.js'); // remove after testing
+const db = require("../models/models.js"); // remove after testing
 
 const queries = {};
 
@@ -60,7 +60,7 @@ RETURNING eventid
 queries.selectEventAttendees = `SELECT * FROM usersandevents WHERE eventtitle=$1`;
 
 //DELETE THE User & EVENTS tables
-queries.deleteUserandEvents = `DELETE FROM usersandevents WHERE eventid =$1`;
+queries.deleteUserandEvents = `DELETE FROM usersandevents WHERE eventid = $1`;
 
 //DELETE events
 
@@ -72,5 +72,7 @@ queries.deleteEvents = `DELETE FROM events WHERE eventid = $1`;
 // DROP TABLE events;
 // DROP TABLE users;
 // `;
+// queries.updateEvents = `UPDATE SET (eventtitle, , eventdate, eventstarttime,eventendtime, eventlocation, eventdetails, eventmessages) WHERE eventid =$1`;
+queries.updateEvents = `UPDATE SET (eventtitle = $1, eventdetails = $2,eventlocation = $3) WHERE eventid = $4`;
 
 module.exports = queries;

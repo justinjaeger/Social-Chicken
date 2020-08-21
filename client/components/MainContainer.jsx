@@ -3,7 +3,7 @@ import Profile from './Profile.jsx';
 import EventsFeed from './EventsFeed.jsx';
 import Notnav from './Navbar.jsx';
 import axios from 'axios';
-import { Container } from 'react-bootstrap';
+import { Card, Button, Col, Row, Container } from 'react-bootstrap';
 import AddSearchEvent from './AddSearchEvent.jsx';
 
 // Implemented with hooks throughout
@@ -11,7 +11,7 @@ export default function MainContainer() {
   const [userName, setUserName] = useState('');
   const [user, setUser] = useState({});
   const [events, setEvents] = useState([]);
-  console.log('eventSSS:',events)
+  const [loggedIn, setLoggedIn] = useState(false);
   // const [forceReset, setForceReset] = useState(0);
   // const [events, setDeleteEvents] = useState(false)
   //pull user data after OAuth login - all variables are named from SQL DB columns
@@ -24,12 +24,14 @@ export default function MainContainer() {
         firstname: res.data.users.firstname,
         lastname: res.data.users.lastname,
         profilephoto: res.data.users.profilephoto,
+        userstatus: res.data.users.userstatus,
       };
       let eventsInfo = res.data.events;
       let imageInfo = res.data.events.map;
       setUser(userInfo);
       setEvents(eventsInfo);
       setUserName(res.data.users.username);
+      setLoggedIn(true);
     });
   }, []);
 
@@ -41,9 +43,7 @@ export default function MainContainer() {
   }
   //handles the state change and posts to database on event creation
   function handleCreateEvent(event) {
-    //console.log('handCreateEvent is firing:', event);
-    // let randomNum = Math.floor(Math.random() * 10000);
-    // setForceReset(randomNum);
+    console.log('handCreateEvent is firing:', event);
     let {
       eventtitle,
       eventlocation,
@@ -102,25 +102,47 @@ export default function MainContainer() {
     }
   };
 
+  const updateEvent = (event) => {
+    let {
+      eventtitle,
+      eventlocation,
+      eventdate,
+      eventstarttime,
+      eventdetails,
+    } = event;
+    console.log(eventitle);
+
+    //correspond with the userid here and then use the fetch request to update the user events
+  };
+
   return (
     <div className="myContainer">
-      <Notnav />
-      <div className="container">
-        <Container className="header">
-          <Profile {...user} />
-
-          <AddSearchEvent
-            addEvent={handleCreateEvent}
-            searchEvent={handleSearchEvent}
+      <Notnav loggedIn={loggedIn} />
+      {!loggedIn && (
+        <div className="container">
+          <Container className="header">
+            Please Log In To Continue To Site
+          </Container>
+        </div>
+      )}
+      {loggedIn && (
+        <div className="container">
+          <Container className="header">
+            <Profile {...user} />
+            <AddSearchEvent
+              addEvent={handleCreateEvent}
+              searchEvent={handleSearchEvent}
+              events={events}
+            />
+          </Container>
+          <EventsFeed
+            deleteEvent={deleteEvent}
             events={events}
+            userUpdate={handleUserPageChange}
           />
-        </Container>
-        <EventsFeed
-          deleteEvent={deleteEvent}
-          events={events}
-          userUpdate={handleUserPageChange}
-        />
-      </div>
+          {/* <UpdatedEvent updated={updateEvent} /> */}
+        </div>
+      )}
     </div>
   );
 }

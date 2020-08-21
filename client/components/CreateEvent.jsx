@@ -12,7 +12,7 @@ export default function CreateEvent({ addEvent }) {
     eventtitle: '',
     eventlocation: '',
     eventdetails: '',
-    imageurl: '',
+    imageurl: null,
   });
 
   const [formData, updateFormData] = useState(initialFormData);
